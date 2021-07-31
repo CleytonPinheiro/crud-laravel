@@ -3,7 +3,7 @@
 
 @section('conteudo')
 
-<form action="{{route('cadastrarpessoa')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('editarpessoa')}}" method="put" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col col-8">

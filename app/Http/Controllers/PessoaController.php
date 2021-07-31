@@ -26,7 +26,7 @@ class PessoaController extends Controller
      */
     public function create()
     {
-        return view('pessoas.create2');
+        return view('pessoas.create');
     }
 
     /**
@@ -42,9 +42,8 @@ class PessoaController extends Controller
             'nome'=>$request->nome,
                'cpf'=>$request->cpf,
                'data'=>$data2
-        ];         
-        
-       Pessoa::create($dados);
+        ];    
+        Pessoa::create($dados);
         return "Pessoa cadastrado com sucesso";       
     }
 
