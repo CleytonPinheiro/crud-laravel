@@ -7,18 +7,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pessoas', [PessoaController::class, 'index']);
+Route::prefix('/pessoas')->group(function(){
+    Route::get('/', [PessoaController::class, 'index']);
 
-Route::get('/pessoas/cadastrar', [PessoaController::class, 'create']);
-Route::post('/pessoas/cadastrar', [PessoaController::class, 'store'])
-    ->name('cadastrarpessoa');
+    Route::get('/cadastrar', [PessoaController::class, 'create']);    
+    Route::post('/cadastrar', [PessoaController::class, 'store'])
+        ->name('cadastrarpessoa');
 
-Route::get('/pessoas/{id}/edit', [PessoaController::class, 'edit'])
+    Route::get('/edit/{id}', [PessoaController::class, 'edit']);   
+    Route::post('/edit/{id}', [PessoaController::class, 'edit'])
     ->name('editarpessoa');
 
+    Route::get('delete/{id}', [PessoaController::class, 'destroy'])->name('deletarpessoas');
 
-    
-
-
+});
 
 

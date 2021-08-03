@@ -1,5 +1,15 @@
-<html>
-    <body>
-        <h1>Hello, {{ $name }}</h1>
-    </body>
-</html>
+@extends('layouts.principal')
+
+@section('cabecalho')   
+    <h1>Listagem  pessoa</h1>
+@endsection
+
+@section('conteudo')
+<ul>
+    @foreach($pessoas as $pessoa)
+        <li class=>{{$pessoa->nome}}</li>    
+
+    @endforeach
+</ul>
+
+@endsection

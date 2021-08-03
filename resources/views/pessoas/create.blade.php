@@ -1,10 +1,11 @@
 
 @extends('layouts.principal')
 
-@section('title', "CRUD LARAVEL")    
+@section('title', "CRUD LARAVEL")  
 
 @section('cabecalho')   
     <h1>Cadastro pessoa</h1>
+@endsection
 
 @section('conteudo')    
 
