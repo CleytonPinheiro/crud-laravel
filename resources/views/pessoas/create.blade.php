@@ -7,7 +7,14 @@
     <h1>Cadastro pessoa</h1>
 @endsection
 
-@section('conteudo')    
+@section('conteudo')
+    
+    @if(session('warning'))
+        @alert
+            teste teste
+
+        @endalert
+    @endif
 
     <form action="{{route('cadastrarpessoa')}}" method="post" enctype="multipart/form-data">
         @csrf

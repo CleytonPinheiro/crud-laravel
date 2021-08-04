@@ -15,8 +15,7 @@ class PessoaController extends Controller
      */
     public function index()
     {
-        $pessoas= Pessoa::all();
-        
+        $pessoas= Pessoa::all();        
         return view('pessoas.index', compact('pessoas'));
     }
 
@@ -44,8 +43,11 @@ class PessoaController extends Controller
                'cpf'=>$request->cpf,
                'data'=>$data2
         ];    
-        Pessoa::create($dados);
-        return "Pessoa cadastrado com sucesso";       
+        $DadosPessoa = Pessoa::create($dados);
+        $DadosPessoa->save();
+        return redirect()
+            ->route('listarpessoas')
+            ->with('warning','Pessoa cadastrado com sucesso');
     }
 
     /**
@@ -68,8 +70,13 @@ class PessoaController extends Controller
      */
     public function edit($id)
     {
-        $pessoacaso = Pessoa::findOrFail($id);
-        return view('pessoas.edit', compact('pessoacaso'));
+        $pessoaCaso = Pessoa::findOrFail($id);
+        if($pessoaCaso){
+            return view ('pessoas.edit',compact ('pessoaCaso')
+            );
+        } else {
+            return redirect()->route('listarpessoas');
+        }        
     }
 
     /**
@@ -86,8 +93,10 @@ class PessoaController extends Controller
             'cpf' => 'required',
             'data' => 'required|date',
         ]);
-        Pessoa::whereId($id)->update($validatedData);
-        return redirect('/pessoas')->with('success', 'Dados da pessoa atualizado com sucesso!');
+        $UpdatePessoa =(Pessoa::whereId($id)->update($validatedData));
+        $UpdatePessoa->save();
+        return redirect('/pessoas')
+            ->with('success', 'Dados da pessoa atualizado com sucesso!');
     }
 
     /**
@@ -100,7 +109,8 @@ class PessoaController extends Controller
     {
         $pessoacase = Pessoa::findOrFail($id);
         $pessoacase->delete();
-        return redirect('/pessoas')->with('success', 'Dados da pessoa removido com sucesso!');
+        return redirect('/pessoas')
+            ->with('success', 'Dados da pessoa removido com sucesso!');
     }
 
     

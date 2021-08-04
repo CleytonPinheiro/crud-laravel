@@ -8,7 +8,8 @@ Route::get('/', function () {
 });
 
 Route::prefix('/pessoas')->group(function(){
-    Route::get('/', [PessoaController::class, 'index']);
+    Route::get('/', [PessoaController::class, 'index'])
+        ->name('listarpessoas');
 
     Route::get('/cadastrar', [PessoaController::class, 'create']);    
     Route::post('/cadastrar', [PessoaController::class, 'store'])
@@ -16,9 +17,10 @@ Route::prefix('/pessoas')->group(function(){
 
     Route::get('/edit/{id}', [PessoaController::class, 'edit']);   
     Route::post('/edit/{id}', [PessoaController::class, 'edit'])
-    ->name('editarpessoa');
+        ->name('editarpessoa');
 
-    Route::get('delete/{id}', [PessoaController::class, 'destroy'])->name('deletarpessoas');
+    Route::get('delete/{id}', [PessoaController::class, 'destroy'])
+        ->name('deletarpessoa');
 
 });
 
